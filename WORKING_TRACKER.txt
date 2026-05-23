@@ -1,0 +1,24 @@
+Hospital Management Backend Work Tracker
+
+Tasks completed:
+- Fixed login route by moving src/app/api/auth/login.ts to src/app/api/auth/login/route.ts.
+- Verified login endpoint uses POST /api/auth/login.
+- Implemented admin-only registration in src/app/api/auth/register/route.ts.
+  - Added JWT validation using src/lib/auth.ts.
+  - Only admin users can create new users.
+- Added admin-only user update/delete endpoints in src/app/api/users/[id]/route.ts.
+  - PUT /api/users/[id] updates user fields (full_name, email, password, role_id).
+  - DELETE /api/users/[id] deletes a user.
+- Added admin-only user listing endpoint in src/app/api/users/route.ts.
+  - GET /api/users returns all users where role_id != ADMIN_ROLE_ID.
+
+  Admin CURD complete on Users.
+
+Validation:
+- Confirmed Next.js build passes after route updates.
+- Verified API routes are registered and compile successfully.
+
+Notes:
+- JWT secret is read from process.env.JWT_SECRET (fallback: "your_jwt_secret").
+- Admin role is read from process.env.ADMIN_ROLE_ID (fallback: 1).
+- Use Postman with Authorization: Bearer <token> for protected admin routes.
